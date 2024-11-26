@@ -2,12 +2,12 @@
 <company>
     <department name="Engineering">
         <employee id="101">
-            <name>John Doe</name>
-            <role>Software Engineer</role>
+            <name>Stenny Rajkumar</name>
+            <role>CloudEngineer</role>
         </employee>
         <employee id="102">
-            <name>Jane Smith</name>
-            <role>DevOps Specialist</role>
+            <name>Jaya Prakash</name>
+            <role>Project Manager/Scrum Master</role>
         </employee>
     </department>
 </company>
