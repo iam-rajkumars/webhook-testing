@@ -1,0 +1,54 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                // Clone your repository
+                git branch: 'main', url: 'https://github.com/your-repo.git'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                // Build the project (e.g., Maven or Gradle)
+                sh './gradlew build' // Or 'mvn clean package'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                // Run tests
+                sh './gradlew test' // Or 'mvn test'
+            }
+
+            post {
+                always {
+                    // Archive test results
+                    junit 'build/test-results/**/*.xml' // Adjust to match your test results path
+                }
+            }
+        }
+
+        stage('Deploy') {
+            when {
+                branch 'main'
+            }
+            steps {
+                echo 'Deploying the application...'
+                // Deploy your application
+            }
+        }
+    }
+
+    post {
+        always {
+            // Clean up
+            cleanWs()
+        }
+
+        failure {
+            echo 'The build failed.'
+        }
+    }
+}
